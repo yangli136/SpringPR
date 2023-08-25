@@ -2,7 +2,7 @@
 
 ---
 
-# Spring based Paved Road on eCP PaaS + xPaaS & DBaaS (PRaaS)
+# Spring based Paved Road on Cloud PaaS + DBaaS (PRaaS)
 ---
 ---
 
