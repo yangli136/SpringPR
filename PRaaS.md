@@ -9,7 +9,7 @@
 ## Problem Statement
 ---
 
-Spring based Paved Road (SpringPR) is an (Amex Way - hopefully) framework
+Spring based Paved Road (SpringPR) is an (Abc Way - hopefully) framework
 provides an opinionated prescription of out-of-box non-functional features
 implemented over Spring Boot framework.
 
@@ -35,7 +35,7 @@ along with CI/CD, built in integration, performance testing mechanisms etc..
 ## Benefits
 ---
 
-Promoting PRaaS across Amex Technology, an industry-standards-based
+Promoting PRaaS across Abc Technology, an industry-standards-based
 solution that has built-in enterprise grade non-functional features
 (Availability, Scalability, Resiliency, Security, Performance), we may realize
 the following Benefits:
@@ -43,7 +43,7 @@ the following Benefits:
 support effort and cost.
 - Significantly reducing communication effort and friction between support
 teams and dev teams.
-- Significantly increasing knowledge sharing across Amex Technology.
+- Significantly increasing knowledge sharing across Abc Technology.
 - Significantly reducing migration cost in future.
 - Significantly reducing application incidents with the aid of quality PRaaS
 features (enterprise grade error handling, better resiliency etc.).
