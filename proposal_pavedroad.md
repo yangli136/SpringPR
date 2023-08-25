@@ -1,4 +1,4 @@
-> README FILE
+> proposal.md
 
 ---
 
@@ -9,7 +9,7 @@
 ## Problem Statement
 ---
 
-Historically in GMST, applications have been developed in silos without a common design or centralized strategy. Wide range of technology stacks were casually chosen (e.g., IBM Mainframe, Salesforce, Aavaya, Salelytics, J2EE, Spring Boot, .Net, React, ePaaS, etc.).
+Historically in this enterprise, applications have been developed in silos without a common design or centralized strategy. Wide range of technology stacks were casually chosen (e.g., IBM Mainframe, Salesforce, Aavaya, Salelytics, J2EE, Spring Boot, .Net, React, ePaaS, etc.).
 
 ### Challenges
 
@@ -22,9 +22,9 @@ Historically in GMST, applications have been developed in silos without a common
 
 ### Solutions
 
-> Starting from 2020, The **Amex Way** was originated at Technology enterprise level to transform how the applications were built. The Amex way is shared set of principles, > > > patterns, and practices that forms how we do software engineering at American Express.
+> Starting from 2020, The **ABC Way** was originated at Technology enterprise level to transform how the applications were built. The ABC way is shared set of principles, > > > patterns, and practices that forms how we do software engineering at this enterprise.
 
-> **Paved Roads** are prefabricated solutions of the Amex Way that enable engineers to work consistently, leverage well-understood architectural and operational patterns.
+> **Paved Roads** are prefabricated solutions of the ABC Way that enable engineers to work consistently, leverage well-understood architectural and operational patterns.
 
 > Common non-functional features such as: high availability, high scalability, high resiliency, high performance, standard security practices, observability, error-handling are > available to engineers out-of-box.
 
@@ -64,7 +64,7 @@ Engineers are facing the following technical obstacles:
 - confident budget estimation, project planning, task scheduling.
 - Reducing coding (enable to focus on mainly adding business logics)
 - Reducing testing (no need to test non-functional features)
-- Preassembled best practices, all Amex Way mandated features (Obseverbility, Reinforced Security, AvailabilityScalabilityResilency+Performance) from day one (more than just a set of rules)
+- Preassembled best practices, all ABC Way mandated features (Obseverbility, Reinforced Security, AvailabilityScalabilityResilency+Performance) from day one (more than just a set of rules)
 - Fully equipped development environment, promoting productivity (dependencies management, code formatting, unit testing with TestContainers, integration testing, CICD process)
 - Best balance between feature rich and troubleshooting difficulty (now troubleshooting over a working Paved Road instead of working at basic framework level), and advantages of knowledge sharing (internal and external forums over shared solutions)
 
@@ -89,7 +89,7 @@ battle-proven and enterprise-grade open-source offerings with minimal proprietar
 ## Need for Spring Boot based Paved Road (SpringPR)
 ---
 
-Amex Way - JVM Paved Road is not ready:
+ABC Way - JVM Paved Road is not ready:
 - Implementation is based on Kotlin. Kotlin is a promising new language, however its adoption, maturity, and community support have raised concerns
 - It is an internal proprietary solution
 - It lacks of high quality, rich set of enterprise grade features
