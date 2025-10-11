@@ -7,7 +7,7 @@
     <version>3.5.6</version>
   </parent>
 
-  <groupId>com.springpr.springpr</groupId>
+  <groupId>dev.springpr.springpr</groupId>
   <artifactId>springpr-parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
@@ -416,7 +416,7 @@
             </systemPropertyVariables>
             <excludes>
               <exclude>*Validation.java</exclude>
-              <exclude>com.springpr.springpr.base.retry.*.java</exclude>
+              <exclude>dev.springpr.springpr.base.retry.*.java</exclude>
             </excludes>
           </configuration>
         </plugin>
@@ -578,7 +578,7 @@
                 <!-- or a custom ordering -->
                 <wildcardsLast>true</wildcardsLast>
                 <!-- Optional, default false. Sort wildcard import after specific imports -->
-                <order>java|javax,org,com,,com.springpr,\#,\#com.springpr</order>
+                <order>java|javax,org,com,,dev.springpr,\#,\#dev.springpr</order>
                 <!-- or use <file>${project.basedir}/eclipse.importorder</file> -->
                 <!-- you can use an empty string for all the imports you didn't specify explicitly,
                    '|' to join group without blank line, and '\#` prefix for static imports. -->
