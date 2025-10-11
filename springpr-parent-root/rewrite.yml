@@ -1,0 +1,53 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: com.yourorg.UpdateMavenProjectPropertyJavaVersionExample
+displayName: Update Maven Java project properties example
+recipeList:
+  - org.openrewrite.maven.UpdateMavenProjectPropertyJavaVersion:
+      version: 21
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: com.yourorg.UseMavenCompilerPluginReleaseConfigurationExample
+displayName: Use Maven compiler plugin release configuration example
+recipeList:
+  - org.openrewrite.maven.UseMavenCompilerPluginReleaseConfiguration:
+      releaseVersion: 21
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: com.yourorg.ExcludeDependencyExample
+displayName: Exclude Maven dependency example
+recipeList:
+  - org.openrewrite.maven.ExcludeDependency:
+      groupId: org.springframework.boot
+      artifactId: spring-boot-starter-logging
+      scope: compile
+  - org.openrewrite.maven.ExcludeDependency:
+      groupId: ch.qos.logback
+      artifactId: logback-access
+      scope: compile
+  - org.openrewrite.maven.ExcludeDependency:
+      groupId: ch.qos.logback
+      artifactId: logback-classic
+      scope: compile
+  - org.openrewrite.maven.ExcludeDependency:
+      groupId: ch.qos.logback
+      artifactId: logback-core
+      scope: compile
+  - org.openrewrite.maven.ExcludeDependency:
+      groupId: org.slf4j
+      artifactId: log4j-over-slf4j
+      scope: compile
+
+#---
+#type: specs.openrewrite.org/v1beta/recipe
+#name: com.yourorg.ParentPomUpgradeExample
+#displayName: Parent POM upgrade example
+#recipeList:
+#  - io.moderne.devcenter.ParentPomUpgrade:
+#      cardName: Upgrade internal Parent POM
+#      groupIdPattern: org.springframework.boot
+#      artifactIdPattern: spring-boot-dependencies
+#      version: 3.5.5
+#      upgradeRecipe: com.acme.UpgradeInternalParentPom
