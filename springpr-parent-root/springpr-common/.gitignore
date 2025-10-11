@@ -1,0 +1,56 @@
+### Compiled class file ###
+*.class
+
+### Log file ###
+*.log
+
+### Package Files ###
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+spotless-index
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+### STS ###
+.apt_generated
+/.classpath
+/.factorypath
+/.java-version
+/.metadata/
+/.project
+/.settings/
+.springBeans
+.sts4-cache
+/bin/
+/target/
+
+### Maven ###
+.flattened-pom.xml
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### GIT ###
+/.DS_Store
