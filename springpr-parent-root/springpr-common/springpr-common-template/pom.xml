@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>dev.springpr.springpr</groupId>
+    <artifactId>springpr-common-parent</artifactId>
+    <version>${revision}</version>
+  </parent>
+
+  <artifactId>springpr-common-template</artifactId>
+  <description>See README.md</description>
+
+  <properties>
+    <git-commit-id-maven-plugin.skip>false</git-commit-id-maven-plugin.skip>
+    <spotless-maven-plugin.skip>false</spotless-maven-plugin.skip>
+  </properties>
+
+  <dependencies>
+
+    <!-- RuleBasedRoutingSampler declarative configuration -->
+    <dependency>
+      <groupId>io.opentelemetry.contrib</groupId>
+      <artifactId>opentelemetry-samplers</artifactId>
+      <version>${opentelemetry-samplers.version}-alpha</version>
+    </dependency>
+
+    <dependency>
+      <groupId>dev.springpr.springpr</groupId>
+      <artifactId>springpr-common-template-test</artifactId>
+      <version>${revision}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+</project>
