@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-dependencies</artifactId>
+    <version>3.5.6</version>
+  </parent>
+
+  <groupId>com.springpr.springpr</groupId>
+  <artifactId>springpr-parent</artifactId>
+  <version>${revision}</version>
+  <packaging>pom</packaging>
+
+  <name>Paved Road for Spring Boot Based Applications - Parent Root</name>
+  <description>See README.md</description>
+
+  <!-- common build environment settings -->
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://opensource.springpr.com/LICENSE.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>springpr136@gmail.com</name>
+    </developer>
+  </developers>
+
+  <modules>
+    <module>springpr-parent-bom</module>
+    <module>springpr-common</module>
+    <module>springpr-batch</module>
+    <module>springpr-rest-interface</module>
+    <module>springpr-rest</module>
+    <module>springpr-data-relational</module>
+    <module>springpr-jwt</module>
+    <module>springpr-webclient</module>
+    <module>springpr-grpc</module>
+    <module>springpr-resiliency</module>
+    <module>springpr-nms4jadaptor</module>
+    <module>springpr-couchbase</module>
+    <module>springpr-cassandra</module>
+    <module>springpr-yugabytedb</module>
+    <!--
+    <module>springpr-batch-file</module>
+    <module>springpr-jooq</module>
+    <module>springpr-kafka</module>
+    -->
+  </modules>
+
+  <scm>
+    <connection>scm:git:https://github.springpr.com/springpr-eng/150838830-springpr-parent-root-framework</connection>
+    <developerConnection>scm:git:https://github.springpr.com/springpr-eng/150838830-springpr-parent-root-framework</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>prod</id>
+      <url>https://artifactory.springpr.com/prod/</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>snapshots</id>
+      <url>https://artifactory.springpr.com/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <!-- common build properties -->
+  <properties>
+    <!-- /-/-release option of the javac compiler -->
+    <java.release.version>21</java.release.version>
+    <spring-boot.version>3.5.6</spring-boot.version>
+    <!-- ### ### ### project version ### ### ### -->
+    <revision>${spring-boot.version}.${java.release.version}.1-SNAPSHOT</revision>
+
+    <springpr.app.id>${project.artifactId}</springpr.app.id>
+
+    <java.compatible.versions>[${java.release.version}, 26)</java.compatible.versions>
+    <maven.compatible.versions>[3.6.3, 4.0.0)</maven.compatible.versions>
+
+    <!-- maven-compiler-plugin: source and target have been replaced by release -->
+    <maven.compiler.source>${java.release.version}</maven.compiler.source>
+    <maven.compiler.target>${java.release.version}</maven.compiler.target>
+    <maven.compiler.release>${java.release.version}</maven.compiler.release>
+
+    <maven.build.timestamp.format>yyyy-MM-dd_HH-mm-ss</maven.build.timestamp.format>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <hydra.build.directory>${project.build.directory}</hydra.build.directory>
+
+    <flag.allowSnapshots>true</flag.allowSnapshots>
+
+    <!-- Maven Plugins not managed by spring-boot-dependencies -->
+    <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
+    <google-java-format.version>1.28.0</google-java-format.version>
+    <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+    <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
+
+    <rewrite-maven-plugin.version>6.19.0</rewrite-maven-plugin.version>
+    <rewrite-all.version>1.21.2</rewrite-all.version>
+    <rewrite-devcenter.version>1.9.0</rewrite-devcenter.version>
+    <rewrite-migrate-java.version>3.18.0</rewrite-migrate-java.version>
+    <rewrite-logging-frameworks.version>3.15.0</rewrite-logging-frameworks.version>
+    <rewrite-spring.version>6.15.0</rewrite-spring.version>
+    <rewrite-static-analysis.version>2.18.0</rewrite-static-analysis.version>
+    <rewrite-rewrite.version>0.13.0</rewrite-rewrite.version>
+
+    <spotless-maven-plugin.version>3.0.0</spotless-maven-plugin.version>
+
+    <!-- temporarily skip it-commit-id-maven-plugin if github is not available -->
+    <git-commit-id-maven-plugin.skip>true</git-commit-id-maven-plugin.skip>
+    <!-- temporarily skip code formatting -->
+    <spotless-maven-plugin.skip>false</spotless-maven-plugin.skip>
+
+    <!-- springpr dependencies not managed by spring-boot-dependencies -->
+    <!-- springpr-parent -->
+    <opentelemetry.version>1.54.1</opentelemetry.version>
+    <opentelemetry-instrumentation-bom.version>2.20.1</opentelemetry-instrumentation-bom.version>
+    <!-- springpr-common/springpr-couchbase -->
+    <opentelemetry-samplers.version>1.50.0</opentelemetry-samplers.version>
+    <error-handling-spring-boot-starter.version>4.6.0</error-handling-spring-boot-starter.version>
+    <springdoc-openapi-starter-common.version>2.8.13</springdoc-openapi-starter-common.version>
+    <wiremock.version>3.13.1</wiremock.version>
+    <!-- springpr-batch -->
+    <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
+    <spring-cloud-dataflow-apps-metadata-plugin.version>1.1.1</spring-cloud-dataflow-apps-metadata-plugin.version>
+    <!-- springpr-data-relational -->
+    <datasource-micrometer-spring-boot.version>1.1.2</datasource-micrometer-spring-boot.version>
+    <!-- springpr-grpc -->
+    <jdbc-yugabytedb.version>42.7.3-yb-4</jdbc-yugabytedb.version>
+
+    <!-- temporary overwrite -->
+    <testcontainers.version>1.21.2</testcontainers.version>
+
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>prod</id>
+      <url>https://artifactory.springpr.com/prod/</url>
+    </repository>
+    <repository>
+      <id>corporate</id>
+      <url>https://artifactory.springpr.com/corporate/</url>
+    </repository>
+    <repository>
+      <id>snapshots</id>
+      <url>https://artifactory.springpr.com/snapshots/</url>
+    </repository>
+    <repository>
+      <id>iq-maven-central-proxy-cache</id>
+      <url>https://artifactory.springpr.com/iq-maven-central-proxy-cache/</url>
+    </repository>
+    <repository>
+      <id>iq-maven-central-proxy</id>
+      <url>https://artifactory.springpr.com/iq-maven-central-proxy/</url>
+    </repository>
+    <repository>
+      <id>iq-gradle-proxy-cache</id>
+      <url>https://artifactory.springpr.com/iq-gradle-proxy-cache/</url>
+    </repository>
+    <repository>
+      <id>iq-gradle-proxy</id>
+      <url>https://artifactory.springpr.com/iq-gradle-proxy/</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.cyclonedx</groupId>
+          <artifactId>cyclonedx-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <goal>makeAggregateBom</goal>
+              </goals>
+              <phase>generate-resources</phase>
+              <configuration>
+                <projectType>application</projectType>
+                <outputDirectory>${project.build.outputDirectory}/META-INF/sbom</outputDirectory>
+                <outputFormat>json</outputFormat>
+                <outputName>application.cdx</outputName>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>flatten-maven-plugin</artifactId>
+          <version>${flatten-maven-plugin.version}</version>
+          <configuration>
+            <updatePomFile>true</updatePomFile>
+            <flattenMode>resolveCiFriendliesOnly</flattenMode>
+          </configuration>
+          <executions>
+            <execution>
+              <id>flatten</id>
+              <goals>
+                <goal>flatten</goal>
+              </goals>
+              <phase>process-resources</phase>
+            </execution>
+            <execution>
+              <id>flatten.clean</id>
+              <goals>
+                <goal>clean</goal>
+              </goals>
+              <phase>clean</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>io.github.git-commit-id</groupId>
+          <artifactId>git-commit-id-maven-plugin</artifactId>
+          <configuration>
+            <skip>${git-commit-id-maven-plugin.skip}</skip>
+            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>revision</goal>
+              </goals>
+              <phase>validate</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-maven-plugin.version}</version>
+          <configuration>
+            <excludes>
+              <exclude>**/Application.class</exclude>
+              <exclude>**/*Controller.class</exclude>
+              <exclude>**/*Validator.class</exclude>
+            </excludes>
+          </configuration>
+          <executions>
+            <execution>
+              <id>prepare-agent</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <goals>
+                <goal>report</goal>
+              </goals>
+              <phase>package</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok-maven-plugin</artifactId>
+          <version>${lombok-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>delombok</goal>
+              </goals>
+              <phase>generate-sources</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>make-assembly</id>
+              <goals>
+                <goal>single</goal>
+              </goals>
+              <phase>package</phase>
+              <configuration>
+                <appendAssemblyId>false</appendAssemblyId>
+                <tarLongFileMode>posix</tarLongFileMode>
+                <descriptors>
+                  <descriptor>${project.basedir}/assembly.xml</descriptor>
+                </descriptors>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <encoding>UTF-8</encoding>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-mapstruct-binding</artifactId>
+                <version>${lombok-mapstruct-binding.version}</version>
+              </path>
+            </annotationProcessorPaths>
+            <compilerArgs>
+              <arg>-parameters</arg>
+            </compilerArgs>
+            <release>${java.release.version}</release>
+          </configuration>
+          <executions>
+            <execution>
+              <id>generate-log4j-plugin-descriptor</id>
+              <goals>
+                <goal>compile</goal>
+              </goals>
+              <phase>process-classes</phase>
+              <configuration>
+                <proc>only</proc>
+                <annotationProcessorPaths>
+                  <path>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                    <version>${log4j2.version}</version>
+                  </path>
+                  <path>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok-mapstruct-binding</artifactId>
+                    <version>0.2.0</version>
+                  </path>
+                </annotationProcessorPaths>
+                <annotationProcessors>
+                  <!-- Process sources using `org.apache.logging.log4j.core.config.plugins.processor.PluginProcessor` to generate `Log4j2Plugins.dat` -->
+                  <processor>org.apache.logging.log4j.core.config.plugins.processor.PluginProcessor</processor>
+                </annotationProcessors>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <configuration>
+            <rules>
+              <banDuplicatePomDependencyVersions></banDuplicatePomDependencyVersions>
+              <requireJavaVersion>
+                <version>${java.compatible.versions}</version>
+              </requireJavaVersion>
+              <requireMavenVersion>
+                <version>${maven.compatible.versions}</version>
+              </requireMavenVersion>
+              <requireProperty>
+                <property>spring-boot.version</property>
+                <message>spring-boot.version should be defined!</message>
+                <regex>.*\d.*</regex>
+                <regexMessage>The spring-boot.version must contain at least one digit.</regexMessage>
+              </requireProperty>
+              <bannedPlugins>
+                <!-- will only display a warning but does not fail the build. -->
+                <level>WARN</level>
+                <excludes>
+                  <exclude>org.apache.maven.plugins:maven-verifier-plugin</exclude>
+                </excludes>
+                <message>Please consider using the maven-invoker-plugin (http://maven.apache.org/plugins/maven-invoker-plugin/)!</message>
+              </bannedPlugins>
+              <banDynamicVersions>
+                <ignores>
+                  <ignore>package.to.be.ignored</ignore>
+                </ignores>
+                <allowSnapshots>${flag.allowSnapshots}</allowSnapshots>
+                <excludedScopes>test</excludedScopes>
+              </banDynamicVersions>
+              <requireFilesExist>
+                <files>
+                  <file>${project.basedir}/.springpr/buildblocks.yaml</file>
+                  <file>${project.basedir}/.mvn/jvm.config</file>
+                  <file>${project.basedir}/lombok.config</file>
+                </files>
+              </requireFilesExist>
+            </rules>
+          </configuration>
+          <executions>
+            <execution>
+              <id>enforce-rules</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <skipTests>false</skipTests>
+            <testFailureIgnore>true</testFailureIgnore>
+            <forkCount>1</forkCount>
+            <argLine>@{argLine}
+            -Xmx1024m
+            -XX:MaxMetaspaceSize=512m
+            -XX:+EnableDynamicAgentLoading
+            -javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
+            -Xshare:off
+            -Djavax.net.ssl.trustStore=${env.JAVA_CERTS}</argLine>
+            <systemPropertyVariables>
+              <javax.net.ssl.trustStorePassword>changeit</javax.net.ssl.trustStorePassword>
+              <jdk.internal.httpclient.disableHostnameVerification>true</jdk.internal.httpclient.disableHostnameVerification>
+              <jdk.instrument.traceUsage></jdk.instrument.traceUsage>
+            </systemPropertyVariables>
+            <excludes>
+              <exclude>*Validation.java</exclude>
+              <exclude>com.springpr.springpr.base.retry.*.java</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <configuration>
+            <encoding>UTF-8</encoding>
+            <escapeString>\</escapeString>
+          </configuration>
+          <executions>
+            <execution>
+              <id>copy-jar</id>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <phase>package</phase>
+              <configuration>
+                <outputDirectory>${hydra.build.directory}/appBundle</outputDirectory>
+                <resources>
+                  <resource>
+                    <filtering>false</filtering>
+                    <directory>${hydra.build.directory}</directory>
+                    <includes>
+                      <include>*.jar</include>
+                    </includes>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+            <execution>
+              <id>copy-config</id>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <phase>package</phase>
+              <configuration>
+                <outputDirectory>${hydra.build.directory}/appBundle/.openshift</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>.openshift</directory>
+                    <filtering>true</filtering>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>${spotless-maven-plugin.version}</version>
+          <configuration>
+            <!-- optional: limit format enforcement to just the files changed by this feature branch
+        <ratchetFrom>origin/main</ratchetFrom> -->
+            <skip>${spotless-maven-plugin.skip}</skip>
+            <formats>
+              <!-- you can define as many formats as you want, each is independent -->
+              <format>
+                <!-- define the files to apply to -->
+                <includes>
+                  <include>.gitignore</include>
+                  <include>Jenkinsfile</include>
+                  <include>jvm.config</include>
+                  <include>**/*.md</include>
+                  <include>**/*.xml</include>
+                  <include>**/*.yaml</include>
+                  <include>**/*.yml</include>
+                </includes>
+                <excludes>
+                  <exclude>pom.xml</exclude>
+                  <exclude>.flattened-pom.xml</exclude>
+                  <exclude>**/target/**/*</exclude>
+                  <exclude>.git/**</exclude>
+                  <exclude>.openshift/**</exclude>
+                  <exclude>setup/**</exclude>
+                </excludes>
+
+                <!-- define the steps to apply to those files -->
+                <trimTrailingWhitespace></trimTrailingWhitespace>
+                <endWithNewline></endWithNewline>
+                <indent>
+                  <spaces>true</spaces>
+                  <spacesPerTab>4</spacesPerTab>
+                </indent>
+
+                <replace>
+                  <!-- specify replacements using search and replace -->
+                  <name>Say Hello to Mars</name>
+                  <search>Mars</search>
+                  <replacement>Mars</replacement>
+                </replace>
+
+                <replaceRegex>
+                  <!-- specify replacements using regex match and replace -->
+                  <name>Say Hello to Mars from Regex</name>
+                  <searchRegex>(Hello) W[a-z]{3}d</searchRegex>
+                  <replacement>$1 Mars</replacement>
+                </replaceRegex>
+              </format>
+            </formats>
+            <!-- define a language-specific format -->
+            <pom>
+              <!-- These are the defaults, you can override if you want -->
+              <includes>
+                <include>pom.xml</include>
+              </includes>
+              <sortPom>
+                <encoding>UTF-8</encoding>
+                <!-- The encoding of the pom files -->
+                <lineSeparator>${line.separator}</lineSeparator>
+                <!-- line separator to use -->
+                <expandEmptyElements>true</expandEmptyElements>
+                <!-- Should empty elements be expanded-->
+                <spaceBeforeCloseEmptyElement>false</spaceBeforeCloseEmptyElement>
+                <!-- Should a space be added inside self-closing elements-->
+                <keepBlankLines>true</keepBlankLines>
+                <!-- Keep empty lines -->
+                <nrOfIndentSpace>2</nrOfIndentSpace>
+                <!-- Indentation -->
+                <indentBlankLines>false</indentBlankLines>
+                <!-- Should empty lines be indented -->
+                <indentSchemaLocation>false</indentSchemaLocation>
+                <!-- Should schema locations be indended -->
+                <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                <!-- Sort order of elements: https://github.com/Ekryd/sortpom/wiki/PredefinedSortOrderProfiles-->
+                <sortOrderFile></sortOrderFile>
+                <!-- Custom sort order of elements: https://raw.githubusercontent.com/Ekryd/sortpom/master/sorter/src/main/resources/custom_1.xml -->
+                <sortDependencies></sortDependencies>
+                <!-- Sort dependencies: https://github.com/Ekryd/sortpom/wiki/SortDependencies-->
+                <sortDependencyExclusions></sortDependencyExclusions>
+                <!-- Sort dependency exclusions: https://github.com/Ekryd/sortpom/wiki/SortDependencies-->
+                <sortPlugins></sortPlugins>
+                <!-- Sort plugins: https://github.com/Ekryd/sortpom/wiki/SortPlugins -->
+                <sortProperties>false</sortProperties>
+                <!-- Sort properties -->
+                <sortModules>false</sortModules>
+                <!-- Sort modules -->
+                <sortExecutions>false</sortExecutions>
+                <!-- Sort plugin executions -->
+              </sortPom>
+            </pom>
+
+            <java>
+              <!-- These are the defaults, you can override if you want -->
+              <includes>
+                <include>src/main/java/**/*.java</include>
+                <include>src/test/java/**/*.java</include>
+              </includes>
+
+              <!-- apply a specific flavor of google-java-format and reflow long strings -->
+              <googleJavaFormat>
+                <version>${google-java-format.version}</version>
+                <style>AOSP</style>
+                <reflowLongStrings>true</reflowLongStrings>
+              </googleJavaFormat>
+
+              <importOrder>
+                <!-- or a custom ordering -->
+                <wildcardsLast>true</wildcardsLast>
+                <!-- Optional, default false. Sort wildcard import after specific imports -->
+                <order>java|javax,org,com,,com.springpr,\#,\#com.springpr</order>
+                <!-- or use <file>${project.basedir}/eclipse.importorder</file> -->
+                <!-- you can use an empty string for all the imports you didn't specify explicitly,
+                   '|' to join group without blank line, and '\#` prefix for static imports. -->
+              </importOrder>
+
+              <!-- self-explanatory -->
+              <removeUnusedImports></removeUnusedImports>
+              <forbidWildcardImports></forbidWildcardImports>
+
+              <formatAnnotations></formatAnnotations>
+              <!-- fixes formatting of type annotations, see below -->
+
+              <!-- make sure every file has the following copyright header.
+                 optionally, Spotless can set copyright years by digging
+                 through git history (see "license" section below) -->
+              <licenseHeader>
+                <content>/* (C)$YEAR */</content>
+                <!-- or <file>${project.basedir}/license-header</file> -->
+              </licenseHeader>
+            </java>
+
+            <json>
+              <includes>
+                <!-- You have to set the target manually -->
+                <include>src/**/*.json</include>
+              </includes>
+
+              <trimTrailingWhitespace></trimTrailingWhitespace>
+              <endWithNewline></endWithNewline>
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>4</spacesPerTab>
+              </indent>
+              <jackson>
+                <features>
+                  <!-- optional: Customize the set of features (based on com.fasterxml.jackson.databind.SerializationFeature) -->
+                  <INDENT_OUTPUT>true</INDENT_OUTPUT>
+                  <!-- true by default -->
+                  <ORDER_MAP_ENTRIES_BY_KEYS>false</ORDER_MAP_ENTRIES_BY_KEYS>
+                  <!-- false by default -->
+                </features>
+              </jackson>
+            </json>
+
+            <sql>
+              <!-- You have to set the target manually -->
+              <includes>
+                <include>src/main/**/*.sql</include>
+              </includes>
+
+              <trimTrailingWhitespace></trimTrailingWhitespace>
+              <endWithNewline></endWithNewline>
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>4</spacesPerTab>
+              </indent>
+
+              <dbeaver>
+                <!-- optional 
+              <configFile>dbeaver.properties</configFile>
+              -->
+              </dbeaver>
+            </sql>
+
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <configuration>
+            <mainClass>${start-class}</mainClass>
+            <excludeDevtools>false</excludeDevtools>
+            <jvmArguments>-Djavax.net.ssl.trustStore=${env.JAVA_CERTS} -Djavax.net.ssl.trustStorePassword=changeit</jvmArguments>
+          </configuration>
+          <executions>
+            <execution>
+              <id>spring-boot</id>
+              <goals>
+                <goal>build-info</goal>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>${rewrite-maven-plugin.version}</version>
+          <configuration>
+            <exportDatatables>true</exportDatatables>
+            <activeRecipes>
+              <recipe>com.yourorg.ExcludeDependencyExample</recipe>
+              <recipe>com.yourorg.UpdateMavenProjectPropertyJavaVersionExample</recipe>
+              <recipe>com.yourorg.UseMavenCompilerPluginReleaseConfigurationExample</recipe>
+              <!-- Upgrades the Apache Maven parent POM to the latest version. -->
+              <recipe>io.moderne.devcenter.UpgradeMavenPluginsParent</recipe>
+              <recipe>io.moderne.devcenter.ApacheMavenBestPractices</recipe>
+              <!-- Git source control metadata -->
+              <recipe>org.openrewrite.FindGitProvenance</recipe>
+              <recipe>org.openrewrite.FindDuplicateSourceFiles</recipe>
+              <recipe>org.openrewrite.FindCallGraph</recipe>
+              <recipe>org.openrewrite.java.jspecify.JSpecifyBestPractices</recipe>
+              <recipe>org.openrewrite.java.logging.slf4j.Slf4jBestPractices</recipe>
+              <recipe>org.openrewrite.java.migrate.AddLombokMapstructBinding</recipe>
+              <recipe>org.openrewrite.java.migrate.lombok.LombokBestPractices</recipe>
+              <!-- Counts the number of lines of the various kinds of source code and data formats. -->
+              <recipe>org.openrewrite.LanguageComposition</recipe>
+              <!-- Replaces any explicit source or target configuration (if present) on the maven-compiler-plugin with release. -->
+              <recipe>org.openrewrite.recipes.rewrite.OpenRewriteRecipeBestPractices</recipe>
+              <recipe>org.openrewrite.staticanalysis.CodeCleanup</recipe>
+              <recipe>org.openrewrite.staticanalysis.CommonStaticAnalysis</recipe>
+            </activeRecipes>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-all</artifactId>
+              <version>${rewrite-all.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>io.moderne.recipe</groupId>
+              <artifactId>rewrite-devcenter</artifactId>
+              <version>${rewrite-devcenter.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-logging-frameworks</artifactId>
+              <version>${rewrite-logging-frameworks.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-migrate-java</artifactId>
+              <version>${rewrite-migrate-java.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-rewrite</artifactId>
+              <version>${rewrite-rewrite.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-spring</artifactId>
+              <version>${rewrite-spring.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-static-analysis</artifactId>
+              <version>${rewrite-static-analysis.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+  </build>
+
+  <profiles>
+    <profile>
+      <id>lib</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <!-- resolve Maven variables, remove build and development related elements -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+          </plugin>
+          <!-- format only markdown/.ignore/pom.xml files -->
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <configuration>
+              <skip>${spotless-maven-plugin.skip}</skip>
+              <formats>
+                <!-- you can define as many formats as you want, each is independent -->
+                <format>
+                  <!-- define the files to apply to -->
+                  <includes>
+                    <include>*.md</include>
+                    <include>.gitignore</include>
+                  </includes>
+                  <!-- define the steps to apply to those files -->
+                  <trimTrailingWhitespace></trimTrailingWhitespace>
+                  <endWithNewline></endWithNewline>
+                  <indent>
+                    <spaces>true</spaces>
+                    <spacesPerTab>4</spacesPerTab>
+                  </indent>
+                </format>
+              </formats>
+              <!-- define a language-specific format -->
+              <pom>
+                <!-- These are the defaults, you can override if you want -->
+                <includes>
+                  <include>pom.xml</include>
+                </includes>
+                <sortPom>
+                  <encoding>UTF-8</encoding>
+                  <!-- The encoding of the pom files -->
+                  <lineSeparator>${line.separator}</lineSeparator>
+                  <!-- line separator to use -->
+                  <expandEmptyElements>true</expandEmptyElements>
+                  <!-- Should empty elements be expanded-->
+                  <spaceBeforeCloseEmptyElement>false</spaceBeforeCloseEmptyElement>
+                  <!-- Should a space be added inside self-closing elements-->
+                  <keepBlankLines>true</keepBlankLines>
+                  <!-- Keep empty lines -->
+                  <nrOfIndentSpace>2</nrOfIndentSpace>
+                  <!-- Indentation -->
+                  <indentBlankLines>false</indentBlankLines>
+                  <!-- Should empty lines be indented -->
+                  <indentSchemaLocation>false</indentSchemaLocation>
+                  <!-- Should schema locations be indended -->
+                  <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                  <!-- Sort order of elements: https://github.com/Ekryd/sortpom/wiki/PredefinedSortOrderProfiles-->
+                  <sortOrderFile></sortOrderFile>
+                  <!-- Custom sort order of elements: https://raw.githubusercontent.com/Ekryd/sortpom/master/sorter/src/main/resources/custom_1.xml -->
+                  <sortDependencies></sortDependencies>
+                  <!-- Sort dependencies: https://github.com/Ekryd/sortpom/wiki/SortDependencies-->
+                  <sortDependencyExclusions></sortDependencyExclusions>
+                  <!-- Sort dependency exclusions: https://github.com/Ekryd/sortpom/wiki/SortDependencies-->
+                  <sortPlugins></sortPlugins>
+                  <!-- Sort plugins: https://github.com/Ekryd/sortpom/wiki/SortPlugins -->
+                  <sortProperties>false</sortProperties>
+                  <!-- Sort properties -->
+                  <sortModules>false</sortModules>
+                  <!-- Sort modules -->
+                  <sortExecutions>false</sortExecutions>
+                  <!-- Sort plugin executions -->
+                </sortPom>
+              </pom>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
