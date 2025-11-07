@@ -2,174 +2,327 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>dev.springpr.springpr</groupId>
-    <artifactId>springpr-parent-bom</artifactId>
+    <groupId>org.springpr.springpr</groupId>
+    <artifactId>springpr-parent</artifactId>
     <version>${revision}</version>
   </parent>
 
-  <artifactId>springpr-parent-pom</artifactId>
+  <artifactId>springpr-parent-bom</artifactId>
   <packaging>pom</packaging>
 
-  <name>SpringPR Maven Parent POM</name>
+  <name>SpringPR Maven Parent BOM</name>
   <description>See README.md</description>
 
   <modules>
-    <module>springpr-server-parent-pom</module>
+    <module>springpr-parent-test-pom</module>
+    <module>springpr-parent-pom</module>
   </modules>
-
-  <properties>
-    <springpr-parent-test-pom.version>${revision}</springpr-parent-test-pom.version>
-  </properties>
 
   <dependencyManagement>
     <dependencies>
+
+      <!-- Remove dependencies on logback -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${spring-boot.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>${spring-boot.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
       <dependency>
         <groupId>io.opentelemetry.instrumentation</groupId>
-        <artifactId>opentelemetry-instrumentation-bom-alpha</artifactId>
-        <version>${opentelemetry-instrumentation-bom.version}-alpha</version>
+        <artifactId>opentelemetry-instrumentation-bom</artifactId>
+        <version>${opentelemetry-instrumentation-bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.19.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
 
-  <dependencies>
-    <dependency>
-      <groupId>dev.springpr.springpr</groupId>
-      <artifactId>springpr-parent-test-pom</artifactId>
-      <version>${springpr-parent-test-pom.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>testcontainers</artifactId>
-      <version>${testcontainers.version}</version>
-      <scope>test</scope>
-    </dependency>
+  <build>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+          <include>**/*.yaml</include>
+          <include>**/*.yml</include>
+          <include>**/*.txt</include>
+          <include>**/*.cql</include>
+          <include>**/*.sql</include>
+          <include>**/*.csv</include>
+        </includes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>src/main/config</directory>
+        <includes>
+          <include>**/*.jks</include>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <filtering>true</filtering>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
 
-    <!-- re-defined -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
+    <plugins>
+      <!-- validate required files -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <!-- apply and validate code format -->
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+      </plugin>
+      <!-- copy required resources -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <!-- unit tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <!-- integrtion tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+      <!-- local code coverage -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+      <!-- generate deployable package -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+      </plugin>
+      <!-- generate commit info -->
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+      </plugin>
+      <!-- Run as Spring Boot app locally -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <!-- generate BOM file -->
+      <plugin>
+        <groupId>org.cyclonedx</groupId>
+        <artifactId>cyclonedx-maven-plugin</artifactId>
+      </plugin>
+      <!-- de-lombok if required -->
+      <plugin>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.openrewrite.maven</groupId>
+        <artifactId>rewrite-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
 
-    <!-- JSON -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-json</artifactId>
-    </dependency>
+  </build>
 
-    <!-- logging -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-log4j2</artifactId>
-    </dependency>
-    <!-- log JSON generating layout -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-layout-template-json</artifactId>
-    </dependency>
-
-    <!-- AspectJ -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-aop</artifactId>
-    </dependency>
-
-    <!-- Null-Safety -->
-    <dependency>
-      <groupId>org.jspecify</groupId>
-      <artifactId>jspecify</artifactId>
-    </dependency>
-
-    <!-- method Level Validation -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-validation</artifactId>
-    </dependency>
-
-    <!-- Cache -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-cache</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.github.ben-manes.caffeine</groupId>
-      <artifactId>caffeine</artifactId>
-    </dependency>
-
-    <!-- Retry -->
-    <dependency>
-      <groupId>org.springframework.retry</groupId>
-      <artifactId>spring-retry</artifactId>
-    </dependency>
-
-    <!-- production ready -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-
-    <!-- Micrometer Registries -->
-    <!-- for local metrics page -->
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-prometheus</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-otlp</artifactId>
-    </dependency>
-    <!--
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-jmx</artifactId>
-    </dependency>
+  <profiles>
+    <profile>
+      <id>lib</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <springboot.profiles>${springpr.app.id},e0</springboot.profiles>
+        <spotless-maven-plugin.skip>false</spotless-maven-plugin.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <configuration>
+              <encoding>UTF-8</encoding>
+              <escapeString>\</escapeString>
+            </configuration>
+            <executions>
+              <execution>
+                <id>copy-jar</id>
+                <phase>none</phase>
+              </execution>
+              <execution>
+                <id>copy-config</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>spring-boot</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>make-assembly</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- mvn -o spring-boot:run -->
+    <!-- springpr.app.id is a Maven profile name use to
+         1. designates Spring active profile when deployed to ePaaS, e.g.
+           E1: -Dspring.profiles.activ=springpr.app.id,e1
+           E2: -Dspring.profiles.activ=springpr.app.id,e2
+           E3-ipc1: -Dspring.profiles.activ=springpr.app.id,e3_ipc1
+           E3-ipc2: -Dspring.profiles.activ=springpr.app.id,e3_ipc2
+         2. as a Spring application name spring.application.name=${springpr.app.id}
+         3. as Micrometer tag for application metrics management.metrics.tags.application=${springpr.app.id}
     -->
+    <profile>
+      <id>local</id>
+      <properties>
+        <EPAAS_ENV>e1</EPAAS_ENV>
+        <springboot.profiles>${springpr.app.id},e0</springboot.profiles>
+      </properties>
+      <build>
+        <finalName>app</finalName>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <configuration>
+              <rules>
+                <requireFilesExist>
+                  <files>
+                    <file>${project.basedir}/.mvn/jvm.config</file>
+                    <file>${project.basedir}/assembly.xml</file>
+                    <file>${project.basedir}/lombok.config</file>
+                    <file>${project.basedir}/helm/values_e1.yaml</file>
+                    <file>${project.basedir}/helm/values_e2.yaml</file>
+                    <file>${project.basedir}/helm/values_e3_ipc1.yaml</file>
+                    <file>${project.basedir}/helm/values_e3_ipc2.yaml</file>
+                    <file>${project.basedir}/Jenkinsfile</file>
+                  </files>
+                </requireFilesExist>
+              </rules>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>server</id>
+      <properties>
+        <springboot.profiles>${springpr.app.id}</springboot.profiles>
+      </properties>
+      <build>
+        <finalName>app</finalName>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <configuration>
+              <rules>
+                <requireFilesExist>
+                  <files>
+                    <file>${project.basedir}/.mvn/jvm.config</file>
+                    <file>${project.basedir}/assembly.xml</file>
+                    <file>${project.basedir}/lombok.config</file>
+                    <file>${project.basedir}/helm/values_e1.yaml</file>
+                    <file>${project.basedir}/helm/values_e2.yaml</file>
+                    <file>${project.basedir}/helm/values_e3_ipc1.yaml</file>
+                    <file>${project.basedir}/helm/values_e3_ipc2.yaml</file>
+                    <file>${project.basedir}/Jenkinsfile</file>
+                  </files>
+                </requireFilesExist>
+              </rules>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
-    <!-- opentelemetry -->
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-tracing-bridge-otel</artifactId>
-    </dependency>
+  </profiles>
 
-    <dependency>
-      <groupId>io.opentelemetry.instrumentation</groupId>
-      <artifactId>opentelemetry-spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.opentelemetry.instrumentation</groupId>
-      <artifactId>opentelemetry-log4j-context-data-2.17-autoconfigure</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-
-    <!-- error handling standards -->
-    <dependency>
-      <groupId>io.github.wimdeblauwe</groupId>
-      <artifactId>error-handling-spring-boot-starter</artifactId>
-      <version>${error-handling-spring-boot-starter.version}</version>
-    </dependency>
-    <!-- devtool -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <optional>true</optional>
-    </dependency>
-
-    <!-- Spring configuration metadata for contextual help in IDE -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-configuration-processor</artifactId>
-      <optional>true</optional>
-    </dependency>
-  </dependencies>
 </project>

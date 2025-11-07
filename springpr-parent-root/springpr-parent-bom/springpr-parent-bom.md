@@ -7,7 +7,7 @@
 ## Delegate dependency management to spring-boot-dependencies.
 - majority versions of library dependencies and Maven plugin dependencies are defined inside spring-boot-dependencies
 
-## Define standard Build Environment Settings
+## Define SpringPR standard Build Environment Settings
 - developers
 - distributionManagement
 - licenses
