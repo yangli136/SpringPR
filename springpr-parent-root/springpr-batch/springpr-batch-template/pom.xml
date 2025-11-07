@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springpr.springpr</groupId>
+    <artifactId>springpr-batch-parent</artifactId>
+    <version>${revision}</version>
+  </parent>
+
+  <artifactId>springpr-batch-template</artifactId>
+  <description>See README.md</description>
+
+  <properties>
+    <springpr.app.id>${project.artifactId}</springpr.app.id>
+    <start-class>org.springpr.springpr.batch.internal.Application</start-class>
+
+    <springpr-common-template.version>${revision}</springpr-common-template.version>
+
+    <git-commit-id-maven-plugin.skip>false</git-commit-id-maven-plugin.skip>
+    <spotless-maven-plugin.skip>false</spotless-maven-plugin.skip>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-task</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-batch</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>${springdoc-openapi-starter-common.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.ttddyy.observation</groupId>
+      <artifactId>datasource-micrometer-spring-boot</artifactId>
+      <version>${datasource-micrometer-spring-boot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springpr.springpr</groupId>
+      <artifactId>springpr-common-template</artifactId>
+      <version>${springpr-common-template.version}</version>
+    </dependency>
+  </dependencies>
+</project>
