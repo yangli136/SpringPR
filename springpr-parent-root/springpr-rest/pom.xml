@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.aexp.springpr</groupId>
+    <artifactId>springpr-server-parent-pom</artifactId>
+    <version>${revision}</version>
+    <relativePath>../springpr-parent-bom/springpr-parent-pom/springpr-server-parent-pom</relativePath>
+  </parent>
+
+  <artifactId>springpr-rest-parent</artifactId>
+  <packaging>pom</packaging>
+  <description>See README.md</description>
+
+  <modules>
+    <module>springpr-rest-template</module>
+  </modules>
+
+  <properties>
+    <springpr.app.id>${project.artifactId}</springpr.app.id>
+    <springpr-common-template.version>${revision}</springpr-common-template.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.aexp.springpr</groupId>
+      <artifactId>springpr-common-template</artifactId>
+      <version>${springpr-common-template.version}</version>
+    </dependency>
+
+    <!-- Web -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-rest</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-hateoas</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>${springdoc-openapi-starter-common.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>
