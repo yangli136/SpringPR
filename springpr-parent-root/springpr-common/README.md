@@ -127,6 +127,8 @@ http://localhost:60000/springpr-common-example/welcome
 
 ### Appendix
 
+---
+
 #### Application version convention
 
 FEATURE.$INTERIM.$UPDATE.$PATCH
