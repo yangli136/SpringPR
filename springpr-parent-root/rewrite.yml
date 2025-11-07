@@ -1,10 +1,37 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
+name: com.yourorg.FindMethodsExample
+displayName: Find method usages example
+recipeList:
+  - org.openrewrite.analysis.search.FindMethods:
+      methodPattern: java.util.List add(..)
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: com.yourorg.FindFlowBetweenMethodsExample
+displayName: Finds flow between two methods example
+recipeList:
+  - org.openrewrite.analysis.search.FindFlowBetweenMethods:
+      startMethodPattern: java.util.List add(..)
+      endMethodPattern: java.util.List add(..)
+      target: null
+      flow: null
+
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: com.yourorg.ControlFlowVisualizationExample
+displayName: Control flow visualization example
+recipeList:
+  - org.openrewrite.analysis.controlflow.ControlFlowVisualization:
+      includeDotfile: false
+
+---
+type: specs.openrewrite.org/v1beta/recipe
 name: com.yourorg.UpdateMavenProjectPropertyJavaVersionExample
 displayName: Update Maven Java project properties example
 recipeList:
   - org.openrewrite.maven.UpdateMavenProjectPropertyJavaVersion:
-      version: 21
+      version: 25
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -12,7 +39,7 @@ name: com.yourorg.UseMavenCompilerPluginReleaseConfigurationExample
 displayName: Use Maven compiler plugin release configuration example
 recipeList:
   - org.openrewrite.maven.UseMavenCompilerPluginReleaseConfiguration:
-      releaseVersion: 21
+      releaseVersion: 25
 
 ---
 type: specs.openrewrite.org/v1beta/recipe
@@ -40,6 +67,7 @@ recipeList:
       artifactId: log4j-over-slf4j
       scope: compile
 
+      
 #---
 #type: specs.openrewrite.org/v1beta/recipe
 #name: com.yourorg.ParentPomUpgradeExample

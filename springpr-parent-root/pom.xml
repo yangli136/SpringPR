@@ -4,10 +4,10 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-dependencies</artifactId>
-    <version>3.5.6</version>
+    <version>3.5.7</version>
   </parent>
 
-  <groupId>dev.springpr.springpr</groupId>
+  <groupId>org.springpr.springpr</groupId>
   <artifactId>springpr-parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
@@ -19,7 +19,7 @@
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
-      <url>https://opensource.springpr.com/LICENSE.txt</url>
+      <url>https://opensource.aexp.com/LICENSE.txt</url>
     </license>
   </licenses>
 
@@ -42,8 +42,8 @@
     <module>springpr-resiliency</module>
     <module>springpr-nms4jadaptor</module>
     <module>springpr-couchbase</module>
-    <module>springpr-cassandra</module>
     <module>springpr-yugabytedb</module>
+    <module>springpr-cassandra</module>
     <!--
     <module>springpr-batch-file</module>
     <module>springpr-jooq</module>
@@ -51,31 +51,13 @@
     -->
   </modules>
 
-  <scm>
-    <connection>scm:git:https://github.springpr.com/springpr-eng/150838830-springpr-parent-root-framework</connection>
-    <developerConnection>scm:git:https://github.springpr.com/springpr-eng/150838830-springpr-parent-root-framework</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
-
-  <distributionManagement>
-    <repository>
-      <id>prod</id>
-      <url>https://artifactory.springpr.com/prod/</url>
-    </repository>
-
-    <snapshotRepository>
-      <id>snapshots</id>
-      <url>https://artifactory.springpr.com/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <!-- common build properties -->
   <properties>
     <!-- /-/-release option of the javac compiler -->
     <java.release.version>21</java.release.version>
-    <spring-boot.version>3.5.6</spring-boot.version>
+    <spring-boot.version>3.5.7</spring-boot.version>
     <!-- ### ### ### project version ### ### ### -->
-    <revision>${spring-boot.version}.${java.release.version}.1-SNAPSHOT</revision>
+    <revision>${spring-boot.version}.${java.release.version}.7-SNAPSHOT</revision>
 
     <springpr.app.id>${project.artifactId}</springpr.app.id>
 
@@ -95,81 +77,68 @@
 
     <flag.allowSnapshots>true</flag.allowSnapshots>
 
+    <!-- ############################################################ -->
+    <!-- springpr dependencies not managed by spring-boot-dependencies -->
+    <!-- ############################################################ -->
+    <!-- springpr-parent -->
+    <opentelemetry-instrumentation-bom.version>2.21.0</opentelemetry-instrumentation-bom.version>
+    <!-- springpr-common/springpr-couchbase -->
+    <opentelemetry-samplers.version>1.51.0-alpha</opentelemetry-samplers.version>
+    <error-handling-spring-boot-starter.version>4.6.0</error-handling-spring-boot-starter.version>
+    <springdoc-openapi-starter-common.version>2.8.13</springdoc-openapi-starter-common.version>
+    <wiremock.version>3.13.1</wiremock.version>
+    <!-- springpr-batch -->
+    <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
+    <spring-cloud-dataflow-apps-metadata-plugin.version>1.1.2</spring-cloud-dataflow-apps-metadata-plugin.version>
+    <!-- springpr-data-relational -->
+    <datasource-micrometer-spring-boot.version>1.2.0</datasource-micrometer-spring-boot.version>
+    <jdbc-yugabytedb.version>42.7.3-yb-4</jdbc-yugabytedb.version>
+
+    <!-- ##################################################### -->
     <!-- Maven Plugins not managed by spring-boot-dependencies -->
+    <!-- ##################################################### -->
     <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
-    <google-java-format.version>1.28.0</google-java-format.version>
-    <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+    <google-java-format.version>1.30.0</google-java-format.version>
+    <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
     <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
-
-    <rewrite-maven-plugin.version>6.19.0</rewrite-maven-plugin.version>
-    <rewrite-all.version>1.21.2</rewrite-all.version>
-    <rewrite-devcenter.version>1.9.0</rewrite-devcenter.version>
-    <rewrite-migrate-java.version>3.18.0</rewrite-migrate-java.version>
-    <rewrite-logging-frameworks.version>3.15.0</rewrite-logging-frameworks.version>
-    <rewrite-spring.version>6.15.0</rewrite-spring.version>
-    <rewrite-static-analysis.version>2.18.0</rewrite-static-analysis.version>
-    <rewrite-rewrite.version>0.13.0</rewrite-rewrite.version>
-
     <spotless-maven-plugin.version>3.0.0</spotless-maven-plugin.version>
+
+    <!-- temporary overwrite -->
+    <testcontainers-bom.version>2.0.1</testcontainers-bom.version>
+
+    <!-- latest version 6.22.1 -->
+    <rewrite-maven-plugin.version>6.21.1</rewrite-maven-plugin.version>
+
+    <rewrite-analysis.version>2.28.0</rewrite-analysis.version>
+    <rewrite-all.version>1.22.2</rewrite-all.version>
+    <rewrite-devcenter.version>1.10.1</rewrite-devcenter.version>
+    <rewrite-jackson.version>1.8.0</rewrite-jackson.version>
+    <rewrite-joda.version>0.2.1</rewrite-joda.version>
+    <rewrite-migrate-java.version>3.20.0</rewrite-migrate-java.version>
+    <rewrite-logging-frameworks.version>3.17.0</rewrite-logging-frameworks.version>
+    <rewrite-rewrite.version>0.14.1</rewrite-rewrite.version>
+    <rewrite-spring.version>6.17.0</rewrite-spring.version>
+    <rewrite-static-analysis.version>2.20.0</rewrite-static-analysis.version>
 
     <!-- temporarily skip it-commit-id-maven-plugin if github is not available -->
     <git-commit-id-maven-plugin.skip>true</git-commit-id-maven-plugin.skip>
     <!-- temporarily skip code formatting -->
     <spotless-maven-plugin.skip>false</spotless-maven-plugin.skip>
 
-    <!-- springpr dependencies not managed by spring-boot-dependencies -->
-    <!-- springpr-parent -->
-    <opentelemetry.version>1.54.1</opentelemetry.version>
-    <opentelemetry-instrumentation-bom.version>2.20.1</opentelemetry-instrumentation-bom.version>
-    <!-- springpr-common/springpr-couchbase -->
-    <opentelemetry-samplers.version>1.50.0</opentelemetry-samplers.version>
-    <error-handling-spring-boot-starter.version>4.6.0</error-handling-spring-boot-starter.version>
-    <springdoc-openapi-starter-common.version>2.8.13</springdoc-openapi-starter-common.version>
-    <wiremock.version>3.13.1</wiremock.version>
-    <!-- springpr-batch -->
-    <spring-cloud-dependencies.version>2025.0.0</spring-cloud-dependencies.version>
-    <spring-cloud-dataflow-apps-metadata-plugin.version>1.1.1</spring-cloud-dataflow-apps-metadata-plugin.version>
-    <!-- springpr-data-relational -->
-    <datasource-micrometer-spring-boot.version>1.1.2</datasource-micrometer-spring-boot.version>
-    <!-- springpr-grpc -->
-    <jdbc-yugabytedb.version>42.7.3-yb-4</jdbc-yugabytedb.version>
-
-    <!-- temporary overwrite -->
-    <testcontainers.version>1.21.2</testcontainers.version>
-
   </properties>
 
-  <repositories>
-    <repository>
-      <id>prod</id>
-      <url>https://artifactory.springpr.com/prod/</url>
-    </repository>
-    <repository>
-      <id>corporate</id>
-      <url>https://artifactory.springpr.com/corporate/</url>
-    </repository>
-    <repository>
-      <id>snapshots</id>
-      <url>https://artifactory.springpr.com/snapshots/</url>
-    </repository>
-    <repository>
-      <id>iq-maven-central-proxy-cache</id>
-      <url>https://artifactory.springpr.com/iq-maven-central-proxy-cache/</url>
-    </repository>
-    <repository>
-      <id>iq-maven-central-proxy</id>
-      <url>https://artifactory.springpr.com/iq-maven-central-proxy/</url>
-    </repository>
-    <repository>
-      <id>iq-gradle-proxy-cache</id>
-      <url>https://artifactory.springpr.com/iq-gradle-proxy-cache/</url>
-    </repository>
-    <repository>
-      <id>iq-gradle-proxy</id>
-      <url>https://artifactory.springpr.com/iq-gradle-proxy/</url>
-    </repository>
-  </repositories>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.openrewrite</groupId>
+        <artifactId>rewrite-bom</artifactId>
+        <version>8.64.0</version>
+        <type>pom</type>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <pluginManagement>
@@ -416,7 +385,7 @@
             </systemPropertyVariables>
             <excludes>
               <exclude>*Validation.java</exclude>
-              <exclude>dev.springpr.springpr.base.retry.*.java</exclude>
+              <exclude>org.springpr.springpr.base.retry.*.java</exclude>
             </excludes>
           </configuration>
         </plugin>
@@ -490,9 +459,11 @@
                   <exclude>pom.xml</exclude>
                   <exclude>.flattened-pom.xml</exclude>
                   <exclude>**/target/**/*</exclude>
+                  <exclude>.idea/**</exclude>
                   <exclude>.git/**</exclude>
                   <exclude>.openshift/**</exclude>
                   <exclude>setup/**</exclude>
+                  <exclude>bin/**</exclude>
                 </excludes>
 
                 <!-- define the steps to apply to those files -->
@@ -578,7 +549,7 @@
                 <!-- or a custom ordering -->
                 <wildcardsLast>true</wildcardsLast>
                 <!-- Optional, default false. Sort wildcard import after specific imports -->
-                <order>java|javax,org,com,,dev.springpr,\#,\#dev.springpr</order>
+                <order>java|javax,org,com,,org.springpr,\#,\#org.springpr</order>
                 <!-- or use <file>${project.basedir}/eclipse.importorder</file> -->
                 <!-- you can use an empty string for all the imports you didn't specify explicitly,
                    '|' to join group without blank line, and '\#` prefix for static imports. -->
@@ -667,6 +638,7 @@
                 <goal>build-info</goal>
                 <goal>repackage</goal>
               </goals>
+              <phase>install</phase>
             </execution>
           </executions>
         </plugin>
@@ -677,26 +649,98 @@
           <configuration>
             <exportDatatables>true</exportDatatables>
             <activeRecipes>
-              <recipe>com.yourorg.ExcludeDependencyExample</recipe>
-              <recipe>com.yourorg.UpdateMavenProjectPropertyJavaVersionExample</recipe>
-              <recipe>com.yourorg.UseMavenCompilerPluginReleaseConfigurationExample</recipe>
-              <!-- Upgrades the Apache Maven parent POM to the latest version. -->
-              <recipe>io.moderne.devcenter.UpgradeMavenPluginsParent</recipe>
-              <recipe>io.moderne.devcenter.ApacheMavenBestPractices</recipe>
-              <!-- Git source control metadata -->
-              <recipe>org.openrewrite.FindGitProvenance</recipe>
-              <recipe>org.openrewrite.FindDuplicateSourceFiles</recipe>
-              <recipe>org.openrewrite.FindCallGraph</recipe>
-              <recipe>org.openrewrite.java.jspecify.JSpecifyBestPractices</recipe>
-              <recipe>org.openrewrite.java.logging.slf4j.Slf4jBestPractices</recipe>
-              <recipe>org.openrewrite.java.migrate.AddLombokMapstructBinding</recipe>
-              <recipe>org.openrewrite.java.migrate.lombok.LombokBestPractices</recipe>
-              <!-- Counts the number of lines of the various kinds of source code and data formats. -->
+              <!-- rewrite-all -->
+              <!-- * counts the number of lines of the various kinds of source code and data formats. -->
               <recipe>org.openrewrite.LanguageComposition</recipe>
-              <!-- Replaces any explicit source or target configuration (if present) on the maven-compiler-plugin with release. -->
+
+              <!-- rewrite-devcenter -->
+              <!-- * A collection of recipes that apply best practices to Maven POMs. -->
+              <recipe>io.moderne.devcenter.ApacheMavenBestPractices</recipe>
+              <!-- * Move to JUnit Jupiter. -->
+              <recipe>io.moderne.devcenter.JUnitJupiterUpgrade</recipe>
+              <!-- * reveal common OWASP Top 10 issues in your source code. -->
+              <recipe>io.moderne.devcenter.SecurityStarter</recipe>
+              <!-- * List out the contents of each unique GitProvenance marker in the set of source files. -->
+              <recipe>org.openrewrite.FindGitProvenance</recipe>
+              <recipe>org.openrewrite.FindLstProvenance</recipe>
+
+              <!-- rewrite-joda -->
+              <recipe>org.openrewrite.java.joda.time.NoJodaTime</recipe>
+              <recipe>org.openrewrite.java.joda.time.JodaTimeRecipe</recipe>
+
+              <!-- rewrite-logging-frameworks -->
+              <!-- * Applies best practices to logging with SLF4J. -->
+              <recipe>org.openrewrite.java.logging.slf4j.Slf4jBestPractices</recipe>
+
+              <!-- rewrite-migrate-java -->
+              <recipe>org.openrewrite.java.AddApache2LicenseHeader</recipe>
+              <!-- * Apply JSpecify best practices, such as migrating off of alternatives, and adding missing @Nullable annotations. -->
+              <recipe>org.openrewrite.java.jspecify.MigrateFromSpringFrameworkAnnotations</recipe>
+              <recipe>org.openrewrite.java.jspecify.JSpecifyBestPractices</recipe>
+              <!-- * Add the lombok-mapstruct-binding annotation processor as needed when both MapStruct and Lombok are used. -->
+              <recipe>org.openrewrite.java.migrate.AddLombokMapstructBinding</recipe>
+              <!-- * Applies all recipes that enforce best practices for using Lombok. -->
+              <recipe>org.openrewrite.java.migrate.lombok.LombokBestPractices</recipe>
+
+              <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
+              <recipe>org.openrewrite.java.migrate.UpgradeToJava21</recipe>
+
+              <!-- rewrite-rewrite -->
+              <!-- ** Best practices for OpenRewrite recipe development. -->
               <recipe>org.openrewrite.recipes.rewrite.OpenRewriteRecipeBestPractices</recipe>
+              -
+              <!-- rewrite-spring -->
+              <recipe>org.openrewrite.java.spring.batch.SpringBatch4To5Migration</recipe>
+              <recipe>org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_5</recipe>
+
+              <recipe>org.openrewrite.java.spring.framework.BeanMethodsNotPublic</recipe>
+              <recipe>org.openrewrite.java.spring.NoAutowiredOnConstructor</recipe>
+              <recipe>org.openrewrite.java.spring.PropertiesToKebabCase</recipe>
+              <recipe>org.openrewrite.java.springdoc.SwaggerToSpringDoc</recipe>
+
+              <!-- rewrite-static-analysis -->
               <recipe>org.openrewrite.staticanalysis.CodeCleanup</recipe>
               <recipe>org.openrewrite.staticanalysis.CommonStaticAnalysis</recipe>
+
+              <!-- rewrite-testing-frameworks -->
+              <!-- * Applies best practices to tests. -->
+              <recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
+              <recipe>org.openrewrite.java.testing.mockito.MockitoBestPractices</recipe>
+              <recipe>org.openrewrite.java.testing.testcontainers.TestContainersBestPractices</recipe>
+
+              <!-- 
+              - rewrite-analysis -
+              <recipe>com.yourorg.ControlFlowVisualizationExample</recipe>
+              <recipe>com.yourorg.FindFlowBetweenMethodsExample</recipe>
+              <recipe>com.yourorg.FindMethodsExample</recipe>
+
+              - * exclude dependencies from POM -
+              <recipe>com.yourorg.ExcludeDependencyExample</recipe>
+              - * Git source control metadata -
+              <recipe>org.openrewrite.FindGitProvenance</recipe>
+              <recipe>com.yourorg.UpdateMavenProjectPropertyJavaVersionExample</recipe>
+              <recipe>com.yourorg.UseMavenCompilerPluginReleaseConfigurationExample</recipe>
+
+              - rewrite-all -
+              <recipe>org.openrewrite.FindCallGraph</recipe>
+              <recipe>org.openrewrite.FindDuplicateSourceFiles</recipe>
+              - * counts the number of lines of the various kinds of source code and data formats. -
+              <recipe>org.openrewrite.LanguageComposition</recipe>
+
+              - rewrite-jackson -
+              - * Apply best practices for using Jackson library, including upgrade to Jackson 2.x and removing redundant annotations. -
+              <recipe>org.openrewrite.java.jackson.JacksonBestPractices</recipe>
+              <recipe>org.openrewrite.java.jackson.UpgradeJackson_2_3</recipe>
+
+              - rewrite-migrate-java -
+              <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
+              <recipe>org.openrewrite.java.migrate.UpgradeToJava21</recipe>
+              <recipe>org.openrewrite.java.migrate.UpgradeToJava25</recipe>
+
+              - rewrite-logging-frameworks -
+              - * Applies best practices to logging with SLF4J. -
+              <recipe>org.openrewrite.java.logging.slf4j.Slf4jBestPractices</recipe>
+            -->
             </activeRecipes>
           </configuration>
           <dependencies>
@@ -706,9 +750,24 @@
               <version>${rewrite-all.version}</version>
             </dependency>
             <dependency>
+              <groupId>org.openrewrite.meta</groupId>
+              <artifactId>rewrite-analysis</artifactId>
+              <version>${rewrite-analysis.version}</version>
+            </dependency>
+            <dependency>
               <groupId>io.moderne.recipe</groupId>
               <artifactId>rewrite-devcenter</artifactId>
               <version>${rewrite-devcenter.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-jackson</artifactId>
+              <version>${rewrite-jackson.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-joda</artifactId>
+              <version>${rewrite-joda.version}</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
@@ -734,6 +793,11 @@
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-static-analysis</artifactId>
               <version>${rewrite-static-analysis.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-testing-frameworks</artifactId>
+              <version>${rewrite-migrate-java.version}</version>
             </dependency>
           </dependencies>
         </plugin>
