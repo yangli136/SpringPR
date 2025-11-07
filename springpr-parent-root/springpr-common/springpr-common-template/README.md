@@ -120,6 +120,7 @@ http://localhost:38866/springpr-base/welcome
 ---
 
 ### Appendix
+
 ---
 
 #### Application version convention
