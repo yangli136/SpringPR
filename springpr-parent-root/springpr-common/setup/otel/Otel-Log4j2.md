@@ -41,7 +41,7 @@ Sample configuration of Attributes:
 
 ```
 otel.springboot.resource.attributes.service.car.id=200005782
-otel.springboot.resource.attributes.service.namespace=com.aexp.springpr
+otel.springboot.resource.attributes.service.namespace=org.springpr.springpr
 otel.springboot.resource.attributes.service.instance.id=springpr-common-example
 otel.springboot.resource.attributes.deployment.environment=E1
 ```
@@ -87,10 +87,10 @@ otel.exporter.logging.metrics.enabled=true
 otel.exporter.otlp.enabled=true
 otel.exporter.otlp.logs.enabled=true
 otel.instrumentation.log4j-appender.enabled=true
-otel.exporter.otlp.logs.endpoint=https://otel.springpr.dev
+otel.exporter.otlp.logs.endpoint=https://otel-dev.springpr.org
 
 otel.springboot.resource.attributes.service.car.id=200005782
-otel.springboot.resource.attributes.service.namespace=dev.springpr.springpr
+otel.springboot.resource.attributes.service.namespace=org.springpr.springpr
 otel.springboot.resource.attributes.service.instance.id=springpr-common-example
 otel.springboot.resource.attributes.deployment.environment=E1
 ```
