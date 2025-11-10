@@ -1,5 +1,0 @@
-com/aexp/springpr/jpa/health/DatabaseHealthCheck.class
-com/aexp/springpr/jpa/jdbc/BaseJdbcDao.class
-com/aexp/springpr/jpa/stereotype/SpringPrJpaService.class
-com/aexp/springpr/jpa/exception/SpringPrJpaExpcetionTranslationAspect.class
-com/aexp/springpr/jpa/jdbc/impl/BaseJdbcDaoImpl.class
