@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springpr.springpr</groupId>
+    <artifactId>springpr-yugabytedb-parent</artifactId>
+    <version>${revision}</version>
+  </parent>
+
+  <artifactId>springpr-yugabytedb-template</artifactId>
+  <description>See README.md</description>
+
+  <properties>
+    <springpr.app.id>${project.artifactId}</springpr.app.id>
+
+    <start-class>org.springpr.springpr.yugabytedb.internal.Application</start-class>
+
+    <springpr-data-relational-template.version>${revision}</springpr-data-relational-template.version>
+
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springpr.springpr</groupId>
+      <artifactId>springpr-data-relational-template</artifactId>
+      <version>${springpr-data-relational-template.version}</version>
+    </dependency>
+
+    <!-- actuator, Tomcat, openAPI -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <!-- RuleBasedRoutingSampler declarative configuration -->
+    <dependency>
+      <groupId>io.opentelemetry.contrib</groupId>
+      <artifactId>opentelemetry-samplers</artifactId>
+      <version>${opentelemetry-samplers.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>${springdoc-openapi-starter-common.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.yugabyte</groupId>
+      <artifactId>jdbc-yugabytedb</artifactId>
+      <version>${jdbc-yugabytedb.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+</project>
