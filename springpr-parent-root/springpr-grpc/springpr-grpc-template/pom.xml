@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springpr.springpr</groupId>
+    <artifactId>springpr-grpc-parent</artifactId>
+    <version>${revision}</version>
+  </parent>
+
+  <artifactId>springpr-grpc-template</artifactId>
+  <description>See README.md</description>
+
+  <properties>
+    <springpr.app.id>${project.artifactId}</springpr.app.id>
+    <start-class>org.springpr.springpr.grpc.internal.Application</start-class>
+
+    <springpr-common-template.version>${revision}</springpr-common-template.version>
+
+    <git-commit-id-maven-plugin.skip>false</git-commit-id-maven-plugin.skip>
+    <spotless-maven-plugin.skip>false</spotless-maven-plugin.skip>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springpr.springpr</groupId>
+      <artifactId>springpr-common-template</artifactId>
+      <version>${springpr-common-template.version}</version>
+    </dependency>
+  </dependencies>
+</project>

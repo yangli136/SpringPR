@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springpr.springpr</groupId>
+    <artifactId>springpr-server-parent-pom</artifactId>
+    <version>${revision}</version>
+    <relativePath>../springpr-parent-bom/springpr-parent-pom/springpr-server-parent-pom</relativePath>
+  </parent>
+
+  <artifactId>springpr-grpc-parent</artifactId>
+  <packaging>pom</packaging>
+  <description>See README.md</description>
+
+  <modules>
+    <module>springpr-grpc-template</module>
+  </modules>
+
+  <properties>
+    <spring-grpc-dependencies.version>0.12.0</spring-grpc-dependencies.version>
+    <!-- versions below are from above spring-grpc-dependencies -->
+    <grpc.version>1.76.0</grpc.version>
+    <protobuf-java.version>4.32.1</protobuf-java.version>
+    <reactor-grpc.version>1.2.4</reactor-grpc.version>
+    <spring-security-oauth2.version>2.5.2.RELEASE</spring-security-oauth2.version>
+
+    <!-- protobuf maven plugin -->
+    <protobuf-maven-plugin.version>4.0.1</protobuf-maven-plugin.version>
+    <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
+
+    <git-commit-id-maven-plugin.skip>false</git-commit-id-maven-plugin.skip>
+    <spotless-maven-plugin.skip>false</spotless-maven-plugin.skip>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.grpc</groupId>
+        <artifactId>spring-grpc-dependencies</artifactId>
+        <version>${spring-grpc-dependencies.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-services</artifactId>
+    </dependency>
+    <!-- OpenAPI -->
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>${springdoc-openapi-starter-common.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- JWT token -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-oauth2-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security.oauth</groupId>
+      <artifactId>spring-security-oauth2</artifactId>
+      <version>${spring-security-oauth2.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- Servlet Server -->
+    <dependency>
+      <groupId>org.springframework.grpc</groupId>
+      <artifactId>spring-grpc-server-web-spring-boot-starter</artifactId>
+    </dependency>
+    <!-- Shaded Netty
+    <dependency>
+      <groupId>org.springframework.grpc</groupId>
+      <artifactId>spring-grpc-spring-boot-starter</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>io.grpc</groupId>
+          <artifactId>grpc-netty</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-netty-shaded</artifactId>
+    </dependency>
+    -->
+
+    <!-- override 4.30.2 from grpc-services -->
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+    </dependency>
+
+    <!-- Reactive gRPC
+    <dependency>
+      <groupId>com.salesforce.servicelibs</groupId>
+      <artifactId>reactor-grpc-stub</artifactId>
+    </dependency>
+    -->
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!--
+        <plugin>
+          <groupId>org.graalvm.buildtools</groupId>
+          <artifactId>native-maven-plugin</artifactId>
+          <configuration>
+            <buildArgs>
+              // replace ~~ two dash
+              <buildArg>~~verbose</buildArg>
+            </buildArgs>
+          </configuration>
+        </plugin>
+        -->
+        <plugin>
+          <groupId>io.github.ascopes</groupId>
+          <artifactId>protobuf-maven-plugin</artifactId>
+          <version>${protobuf-maven-plugin.version}</version>
+
+          <configuration>
+            <protoc>${protobuf-java.version}</protoc>
+            <sourceDirectories>
+              <sourceDirectory>src/main/protobuf</sourceDirectory>
+            </sourceDirectories>
+
+            <!-- Vanilla protoc plugins - these are platform specific executables
+                 just like protoc is. 
+            -->
+            <binaryMavenPlugins>
+              <binaryMavenPlugin>
+                <groupId>io.grpc</groupId>
+                <artifactId>protoc-gen-grpc-java</artifactId>
+                <version>${grpc.version}</version>
+              </binaryMavenPlugin>
+            </binaryMavenPlugins>
+
+            <!-- JVM plugins are distributed as JARs rather than native system
+                 executables. The protobuf-maven-plugin will automatically bootstrap
+                 them for you. 
+
+            <jvmMavenPlugins>
+              <jvmMavenPlugin>
+                <groupId>com.salesforce.servicelibs</groupId>
+                <artifactId>reactor-grpc</artifactId>
+                <version>${reactor-grpc.version}</version>
+              </jvmMavenPlugin>
+            </jvmMavenPlugins>
+            -->
+          </configuration>
+
+          <executions>
+            <execution>
+              <id>java</id>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+              <!-- output directory
+              <configuration>
+                <protocVersion>${protobuf.version}</protocVersion>
+                <outputDirectory>${project.basedir}/target/java</outputDirectory>
+              </configuration>
+              -->
+            </execution>
+          </executions>
+
+          <!-- Separate soure directories
+          <executions>
+            <execution>
+              <id>java</id>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+              <configuration>
+                <sourceDirectories>
+                  <sourceDirectory>path/to/main/directory</sourceDirectory>
+                </sourceDirectories>
+              </configuration>
+            </execution>
+
+            <execution>
+              <id>java-test</id>
+              <goals>
+                <goal>generate-test</goal>
+              </goals>
+              <configuration>
+                <sourceDirectories>
+                  <sourceDirectory>path/to/test/directory</sourceDirectory>
+                </sourceDirectories>
+              </configuration>
+            </execution>
+          </executions>
+          -->
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>grpc-client</id>
+      <properties>
+        <EPAAS_ENV>e1</EPAAS_ENV>
+        <springboot.profiles>${springpr.app.id},local-e0,e0,client-e0</springboot.profiles>
+      </properties>
+      <build>
+        <finalName>app</finalName>
+      </build>
+    </profile>
+    <profile>
+      <id>grpc-server</id>
+      <properties>
+        <EPAAS_ENV>e1</EPAAS_ENV>
+        <springboot.profiles>${springpr.app.id},local-e0,e0</springboot.profiles>
+      </properties>
+      <build>
+        <finalName>app</finalName>
+      </build>
+    </profile>
+  </profiles>
+</project>
