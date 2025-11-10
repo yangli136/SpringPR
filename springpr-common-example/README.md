@@ -127,6 +127,23 @@ http://localhost:60000/springpr-common-example/welcome
 
 ### Appendix
 
+>
+> Note the following files are included in the deployment artifact along with the code - these supply command line configuration for the application, i.e.
+>
+
+```
+ARGS - contains the jar application arguments, those passed as args to your main method i.e. void main(String[] args)
+```
+```
+JVMARGS - parameters to be passed directly to the jvm via the -D flag, e.g. -DmyEnv=xyz
+```
+
+Within the container, the application will be deployed in the opt/app-root/app.jar location and executed as:
+
+```
+/usr/bin/java -DmyOption=abc -jar /opt/app-root/app.jar args0 args1 ...
+```
+
 ---
 
 #### Application version convention
@@ -148,6 +165,11 @@ See [contributing guidelines](./CONTRIBUTING.md)
 ## Custodians
 
 - **Lead Maintainer:** [Yang Li](mailto:yangli136@gmail.com)
+
+
+
+# Importing Internal NonProd Root CA to trust store
+
 
 Importing certificate into trust store:
 

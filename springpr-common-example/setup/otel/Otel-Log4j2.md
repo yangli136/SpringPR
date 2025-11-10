@@ -4,7 +4,7 @@
 
 # Spring Boot OpenTelemetry Integration with Log4j2
 
-The document contains information about OpenTelementry integration with Log4j2 to deliver logs to Otel receiver and makes logs available in Otel OpenSearch Dashboards.
+The document contains information about OpenTelementry integration with Log4j2 to deliver logs to ELF receiver and makes logs available in ELF OpenSearch Dashboards.
 
 ## Configurations
 
@@ -41,7 +41,7 @@ Sample configuration of Attributes:
 
 ```
 otel.springboot.resource.attributes.service.car.id=200005782
-otel.springboot.resource.attributes.service.namespace=dev.springpr.springpr
+otel.springboot.resource.attributes.service.namespace=org.springpr.springpr
 otel.springboot.resource.attributes.service.instance.id=springpr-common-example
 otel.springboot.resource.attributes.deployment.environment=E1
 ```
@@ -87,10 +87,10 @@ otel.exporter.logging.metrics.enabled=true
 otel.exporter.otlp.enabled=true
 otel.exporter.otlp.logs.enabled=true
 otel.instrumentation.log4j-appender.enabled=true
-otel.exporter.otlp.logs.endpoint=https://otel.springpr.dev
+otel.exporter.otlp.logs.endpoint=https://otel.org.springpr
 
 otel.springboot.resource.attributes.service.car.id=200005782
-otel.springboot.resource.attributes.service.namespace=dev.springpr.springpr
+otel.springboot.resource.attributes.service.namespace=org.spirngpr.springpr
 otel.springboot.resource.attributes.service.instance.id=springpr-common-example
 otel.springboot.resource.attributes.deployment.environment=E1
 ```

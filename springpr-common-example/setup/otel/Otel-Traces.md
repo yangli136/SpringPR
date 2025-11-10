@@ -4,7 +4,7 @@
 
 # Spring Boot OpenTelemetry Integration - Enable Traces
 
-The document contains information about OpenTelementry integration to make traces available in Otel Tracing UI.
+The document contains information about OpenTelementry integration to make traces available in ELF Tracing UI.
 
 ## Configurations
 
@@ -152,7 +152,7 @@ Sample configuration of Attributes:
 
 ```
 otel.springboot.resource.attributes.service.car.id=200005782
-otel.springboot.resource.attributes.service.namespace=dev.springpr.springpr
+otel.springboot.resource.attributes.service.namespace=org.springpr.springpr
 otel.springboot.resource.attributes.service.instance.id=springpr-common-example
 otel.springboot.resource.attributes.deployment.environment=E1
 ```
@@ -162,7 +162,7 @@ otel.springboot.resource.attributes.deployment.environment=E1
 ```
 otel.exporter.otlp.enabled=true
 otel.exporter.otlp.traces.enabled=true
-otel.exporter.otlp.traces.endpoint=https://otel.springpr.dev
+otel.exporter.otlp.traces.endpoint=https://otel.org.springpr
 otel.traces.sampler.probability=1.0
 # Batch Span Processor
 otel.bsp.schedule.delay=5000
@@ -171,7 +171,7 @@ otel.bsp.max.export.batch.size=512
 otel.bsp.export.timeout=30000
 
 otel.springboot.resource.attributes.service.car.id=200005782
-otel.springboot.resource.attributes.service.namespace=dev.springpr.springpr
+otel.springboot.resource.attributes.service.namespace=org.springpr.springpr
 otel.springboot.resource.attributes.service.instance.id=springpr-common-example
 otel.springboot.resource.attributes.deployment.environment=E1
 ```
