@@ -1,5 +1,5 @@
 /* (C)2023 */
-package com.aexp.springpr.rest.base.exception;
+package org.springpr.springpr.rest.base.exception;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.util.WebUtils;
 
-import com.aexp.springpr.base.exception.EntityNotFoundException;
+import org.springpr.springpr.base.exception.EntityNotFoundException;
 
 import static java.util.stream.Collectors.toList;
 

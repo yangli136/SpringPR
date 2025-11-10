@@ -1,5 +1,5 @@
 /* (C)2023 */
-package com.aexp.springpr.rest.base.exception;
+package org.springpr.springpr.rest.base.exception;
 
 import java.util.List;
 

@@ -1,5 +1,5 @@
 /* (C)2023 */
-package com.aexp.springpr.rest.base.resource;
+package org.springpr.springpr.rest.base.resource;
 
 import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,13 +28,13 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import com.aexp.springpr.base.exception.RecoverableFailureException;
-import com.aexp.springpr.base.exception.SpringPrApplicationException;
-import com.aexp.springpr.base.logging.Log4jDiagnosticContextEnable;
-import com.aexp.springpr.base.openapi.SwaggerView;
-import com.aexp.springpr.base.stereotype.ValidationGroup;
-import com.aexp.springpr.serviceinterface.resource.model.IdentifiableResourceDto;
-import com.aexp.springpr.serviceinterface.resource.service.ResourceService;
+import org.springpr.springpr.base.exception.RecoverableFailureException;
+import org.springpr.springpr.base.exception.SpringPrApplicationException;
+import org.springpr.springpr.base.logging.Log4jDiagnosticContextEnable;
+import org.springpr.springpr.base.openapi.SwaggerView;
+import org.springpr.springpr.base.stereotype.ValidationGroup;
+import org.springpr.springpr.serviceinterface.resource.model.IdentifiableResourceDto;
+import org.springpr.springpr.serviceinterface.resource.service.ResourceService;
 
 @RestController
 @RequestMapping(path = "/api/v1/resources")

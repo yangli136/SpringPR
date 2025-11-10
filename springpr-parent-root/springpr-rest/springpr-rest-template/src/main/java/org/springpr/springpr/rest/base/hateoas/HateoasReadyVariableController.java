@@ -1,5 +1,5 @@
 /* (C)2023 */
-package com.aexp.springpr.rest.base.hateoas;
+package org.springpr.springpr.rest.base.hateoas;
 
 import java.net.URI;
 import java.util.ArrayList;

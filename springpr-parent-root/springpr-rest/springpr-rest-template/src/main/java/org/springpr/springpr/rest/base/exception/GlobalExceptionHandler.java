@@ -1,5 +1,5 @@
 /* (C)2025 */
-package com.aexp.springpr.rest.base.exception;
+package org.springpr.springpr.rest.base.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
