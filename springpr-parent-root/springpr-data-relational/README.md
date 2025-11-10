@@ -6,7 +6,7 @@
 
 This template project provides Domain Driven Design support and dynamically exposes REST API for underneath Data Store.
 
-The solution assists engineers to focus on building domain models by following Amex Enterprise API strategy based on Domain Driven Design (DDD). From the domain models, the solution will dynamically generate enterprise-grade feature-rich (CRUD, HAL, Pagination etc.) REST API and database queries so that 80-90% coding and maintenance effort reduction could be reached.
+The solution assists engineers to focus on building domain models by following SpringPR Enterprise API strategy based on Domain Driven Design (DDD). From the domain models, the solution will dynamically generate enterprise-grade feature-rich (CRUD, HAL, Pagination etc.) REST API and database queries so that 80-90% coding and maintenance effort reduction could be reached.
 
 The solution is Hydra-ready, and all required non-functional features (observability, resiliency, security etc.) are provided out-of-box.
 
