@@ -211,4 +211,4 @@ See [contributing guidelines](./CONTRIBUTING.md)
 
 ## Custodians
 
-- **Lead Maintainer:** [Yang Li](mailto:Yang.Li@aexp.com), [Debdeep Banerjee](mailto:Debdeep.Banerjee@aexp.com)
+- **Lead Maintainer:** [Yang Li](mailto:yangli136@gmail.com)
