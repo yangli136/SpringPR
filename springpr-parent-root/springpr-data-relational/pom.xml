@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.aexp.springpr</groupId>
+    <artifactId>springpr-server-parent-pom</artifactId>
+    <version>${revision}</version>
+    <relativePath>../springpr-parent-bom/springpr-parent-pom/springpr-server-parent-pom</relativePath>
+  </parent>
+
+  <artifactId>springpr-data-relational-parent</artifactId>
+  <packaging>pom</packaging>
+  <description>See README.md</description>
+
+  <modules>
+    <module>springpr-data-relational-template</module>
+  </modules>
+
+  <properties>
+    <springpr.app.id>${project.artifactId}</springpr.app.id>
+
+    <springpr-common-template.version>${revision}</springpr-common-template.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.aexp.springpr</groupId>
+      <artifactId>springpr-common-template</artifactId>
+      <version>${springpr-common-template.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>net.ttddyy.observation</groupId>
+      <artifactId>datasource-micrometer-spring-boot</artifactId>
+      <version>${datasource-micrometer-spring-boot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>oracle-free</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.projectreactor</groupId>
+      <artifactId>reactor-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>local-h2</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <EPAAS_ENV>e0</EPAAS_ENV>
+        <springboot.profiles>${springpr.app.id},jpa,e0</springboot.profiles>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.h2database</groupId>
+          <artifactId>h2</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>h2</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.h2database</groupId>
+          <artifactId>h2</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>postgres</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>oracle</id>
+      <dependencies>
+        <dependency>
+          <groupId>com.oracle.database.jdbc</groupId>
+          <artifactId>ojdbc11</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>tc-postgres</id>
+      <properties>
+        <EPAAS_ENV>e0</EPAAS_ENV>
+        <springboot.profiles>${springpr.app.id},jpa,e0,tc-postgres</springboot.profiles>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>local-postgres</id>
+      <properties>
+        <EPAAS_ENV>e0</EPAAS_ENV>
+        <springboot.profiles>${springpr.app.id},jpa,e0,local-postgres</springboot.profiles>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>tc-oracle</id>
+      <properties>
+        <EPAAS_ENV>e0</EPAAS_ENV>
+        <springboot.profiles>${springpr.app.id},jpa,e0,tc-oracle</springboot.profiles>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.oracle.database.jdbc</groupId>
+          <artifactId>ojdbc11</artifactId>
+          <scope>runtime</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>server</id>
+      <properties>
+        <springboot.profiles>${springpr.app.id},jpa,e1</springboot.profiles>
+      </properties>
+    </profile>
+  </profiles>
+</project>
