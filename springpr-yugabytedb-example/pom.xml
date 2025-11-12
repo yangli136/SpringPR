@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>dev.springpr.springpr</groupId>
+    <artifactId>springpr-yugabytedb-parent</artifactId>
+    <version>3.5.7.21.7-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>springpr-yugabytedb-example</artifactId>
+  <description>See README.md</description>
+
+  <properties>
+    <start-class>dev.springpr.springpr.yugabytedb.example.Application</start-class>
+
+    <springpr-grpc-template.version>${revision}</springpr-grpc-template.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>dev.springpr.springpr</groupId>
+      <artifactId>springpr-yugabytedb-template</artifactId>
+      <version>${springpr-grpc-template.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>
