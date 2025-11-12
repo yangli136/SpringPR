@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+option java_multiple_files = true;
+
+package service2;
+
+option java_package = "com.service2";
+
+service GetData{
+    rpc GetData(GetDataRequest) returns (GetDataResponse);
+}
+
+message GetDataRequest {
+  required int64 id = 1;
+}
+
+message GetDataResponse {
+  required string data = 1;
+}

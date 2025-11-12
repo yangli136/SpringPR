@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>dev.springpr.springpr</groupId>
+    <artifactId>springpr-grpc-parent</artifactId>
+    <version>3.5.7.21.7-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>springpr-grpc-example</artifactId>
+  <description>See README.md</description>
+
+  <properties>
+    <springpr.app.id>${project.artifactId}</springpr.app.id>
+    <start-class>dev.springpr.springpr.grpc.example.Application</start-class>
+
+    <springpr-grpc-template.version>${revision}</springpr-grpc-template.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>dev.springpr.springpr</groupId>
+      <artifactId>springpr-grpc-template</artifactId>
+      <version>${springpr-grpc-template.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.grpc</groupId>
+      <artifactId>spring-grpc-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- import bundles of Proto files
+    <dependency>
+      <groupId>org.example.protos</groupId>
+      <artifactId>user-protos</artifactId>
+      <version>1.2.3</version>
+      <type>zip</type>
+    </dependency>
+     -->
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.github.ascopes</groupId>
+        <artifactId>protobuf-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
