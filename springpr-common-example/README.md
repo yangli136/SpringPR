@@ -164,7 +164,7 @@ See [contributing guidelines](./CONTRIBUTING.md)
 
 ## Custodians
 
-- **Lead Maintainer:** [Yang Li](mailto:yangli136@gmail.com)
+- **Lead Maintainer:** [Yang Li](mailto:springpr.solutions@icloud.com)
 
 
 
